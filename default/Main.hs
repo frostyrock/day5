@@ -45,7 +45,7 @@ main = do
 
   defaultMain [
     bgroup "exitMutPart2"
-      [ bench "Storeable Vector" $ whnf exitMutPart2Storable day5Input
+      [ bench "Storable Vector" $ whnf exitMutPart2Storable day5Input
       , bench "Unboxed Vector" $ whnf exitMutPart2Unboxed day5Input
       ]
     ]

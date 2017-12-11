@@ -5,7 +5,7 @@
 
 |   Vector   |   time   |
 |------------|----------|
-| Storeable  | 224.6 ms |
+| Storable   | 224.6 ms |
 | Unboxed    | 237.3 ms |
 
 
@@ -14,7 +14,7 @@
 
 |   Vector   |   time   |
 |------------|----------|
-| Storeable  | 278.8 ms |
+| Storable   | 278.8 ms |
 | Unboxed    | 286.4 ms |
 
 for more detail see day5_default_bench.html and  day5_llvm_bench.html
