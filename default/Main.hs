@@ -1,13 +1,10 @@
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE BangPatterns #-}
 
-module Day5
-  ( exitMutPart2Unboxed
-  , exitMutPart2Storable
-  ) where
+module Main where
 
+import Criterion.Main
 import Prelude as P
-import Control.Monad
 import Control.Monad.ST
 import Data.Vector.Generic as G
 import Data.Vector.Generic.Mutable as M
@@ -39,3 +36,16 @@ exitMut vec rule = runST $ do
         c <- M.unsafeRead mut idx
         M.unsafeWrite mut idx (rule c)
         loop mut (idx + c) (acc + 1)
+
+
+main :: IO ()
+main = do
+
+  day5Input <- readFile "./inputs/day5.input"
+
+  defaultMain [
+    bgroup "exitMutPart2"
+      [ bench "Storeable Vector" $ whnf exitMutPart2Storable day5Input
+      , bench "Unboxed Vector" $ whnf exitMutPart2Unboxed day5Input
+      ]
+    ]
