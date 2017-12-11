@@ -1,6 +1,4 @@
-# day5
-
-## default
+# default
   - ghc-options: threaded -rtsopts -with-rtsopts=-N -O2
 
 > day5-0.1.0.0: benchmarks
@@ -23,7 +21,7 @@
 > Benchmark time: FINISH
 > Completed 2 action(s).
 
-## llvm
+# llvm
  - ghc-options: threaded -rtsopts -with-rtsopts=-N -O2 -fllvm
 
 > day5-0.1.0.0: benchmarks
