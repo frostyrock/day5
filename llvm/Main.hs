@@ -20,16 +20,14 @@ exitMutPart2Storable str = exitMut ((makeVector str)::S.Vector Int)
 
 exitMut :: (G.Vector v Int) => v Int -> Int
 exitMut vec = runST $ do
-  mutable <- G.thaw vec
-  loop mutable 0 0
-  where
-    len = G.length vec
-    loop mut idx acc =
-      if  idx  < 0 || idx >= len then return acc
-      else do
-        c <- M.read mut idx
-        M.write mut idx (if c >= 3 then c - 1 else c + 1)
-        loop mut (idx + c) (acc + 1)
+  mut <- G.thaw vec
+  let loop idx acc
+        | idx  < 0 || idx >= G.length vec = return acc
+        | otherwise = do
+            c <- M.read mut idx
+            M.write mut idx (if c >= 3 then c - 1 else c + 1)
+            loop (idx + c) (acc + 1)
+  loop 0 0
 
 
 main :: IO ()
