@@ -27,8 +27,8 @@ exitMut vec = runST $ do
     loop mut idx acc =
       if  idx  < 0 || idx >= len then return acc
       else do
-        c <- M.unsafeRead mut idx
-        M.unsafeWrite mut idx (if c >= 3 then c - 1 else c + 1)
+        c <- M.read mut idx
+        M.write mut idx (if c >= 3 then c - 1 else c + 1)
         loop mut (idx + c) (acc + 1)
 
 
