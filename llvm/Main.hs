@@ -13,10 +13,12 @@ makeVector :: (G.Vector v Int) => String -> v Int
 makeVector str =  G.fromList $ read <$> words str
 
 exitMutPart2Unboxed :: String -> Int
-exitMutPart2Unboxed str = exitMut ((makeVector str)::U.Vector Int)
+exitMutPart2Unboxed str = let vec = makeVector str :: U.Vector Int
+                          in  exitMut vec
 
 exitMutPart2Storable :: String -> Int
-exitMutPart2Storable str = exitMut ((makeVector str)::S.Vector Int)
+exitMutPart2Storable str = let vec = makeVector str :: S.Vector Int
+                           in  exitMut vec
 
 exitMut :: (G.Vector v Int) => v Int -> Int
 exitMut vec = runST $ do
