@@ -1,5 +1,4 @@
 {-# LANGUAGE FlexibleContexts #-}
-{-# LANGUAGE BangPatterns #-}
 
 module Main where
 
@@ -27,7 +26,7 @@ exitMut vec = runST $ do
   loop mutable 0 0
   where
     len = G.length vec
-    loop mut (!idx) (!acc) =
+    loop mut idx acc =
       if  idx  < 0 || idx >= len then return acc
       else do
         c <- M.unsafeRead mut idx
