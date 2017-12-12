@@ -2,17 +2,15 @@
 
 module Main where
 
-import Criterion.Main
-import Prelude as P
-import Control.Monad
-import Control.Monad.ST
-import Data.Vector.Generic as G
-import Data.Vector.Generic.Mutable as M
-import Data.Vector.Unboxed as U
-import Data.Vector.Storable as S
+import           Criterion.Main             (defaultMain, bgroup, bench, whnf)
+import           Control.Monad.ST           (runST)
+import qualified Data.Vector.Generic         as G
+import qualified Data.Vector.Generic.Mutable as M
+import qualified Data.Vector.Unboxed         as U
+import qualified Data.Vector.Storable        as S
 
 makeVector :: (G.Vector v Int) => String -> v Int
-makeVector str =  G.fromList $ P.read <$> words str
+makeVector str =  G.fromList $ read <$> words str
 
 exitMutPart2Unboxed :: String -> Int
 exitMutPart2Unboxed str = exitMut ((makeVector str)::U.Vector Int)
