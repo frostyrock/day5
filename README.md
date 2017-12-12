@@ -9,7 +9,7 @@
 | Unboxed    | 258.8 ms |
 
 
-## llvm
+## llvm 3.9
  - ghc-options: threaded -rtsopts -with-rtsopts=-N -O2 -fllvm
 
 |   Vector   |   time   |
